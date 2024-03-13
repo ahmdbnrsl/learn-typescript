@@ -1,0 +1,28 @@
+{
+  "name": "ts_dasar_pak_eko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@babel/preset-env": "latest",
+    "@babel/preset-typescript": "latest",
+    "@jest/globals": "latest",
+    "@types/jest": "latest",
+    "babel-jest": "latest",
+    "jest": "latest",
+    "ts-jest": "latest",
+    "typescript": "latest"
+  },
+  "license": "ISC"
+}
