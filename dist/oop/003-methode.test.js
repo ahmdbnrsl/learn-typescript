@@ -1,5 +1,5 @@
 "use strict";
-describe('', function () {
+describe('method', function () {
     class Customer {
         constructor(id, name) {
             this.id = id;

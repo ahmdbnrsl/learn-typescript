@@ -1,4 +1,4 @@
-describe('', function () {
+describe('method', function () {
   class Customer {
     readonly id: number;
     name: string;
