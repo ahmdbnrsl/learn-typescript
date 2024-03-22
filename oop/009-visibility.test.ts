@@ -24,5 +24,5 @@ describe('Visibility', function () {
   it('should support protected method', function() {
     const doubleCounter: DoubleCounter = new DoubleCounter();
     doubleCounter.increment();
-  })
+  });
 });
