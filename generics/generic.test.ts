@@ -48,5 +48,76 @@ describe('Generics', function () {
     expect(entitys.via).toBe('Via Fitriana');
     expect(entitys.fitriana).toBe(19);
     expect(entitys.beni).toBe(true);
+  });
+  /*OPTIONAL GENERIC TYPE*/
+  it('should support optional generic type', async() => {
+    const entity = new Entity('Via Fitriana', 19);
+    expect(entity.name).toBe('Via Fitriana');
+    expect(entity.age).toBe(19);
+  });
+  /*CREATE SIMPLE GENERIC*/
+  class SimpleGeneric<Type = string> {
+    private value?: Type;
+    
+    setValue(value: Type) {
+      this.value = value;
+    }
+    
+    getValue(): Type | undefined {
+      return this.value;
+    }
+  }
+  it('should support create simple generic', async() => {
+    const simple = new SimpleGeneric();
+    simple.setValue('Via Fitriana');
+    //simple.setValue(100) Here is error because type of generic was declared as string
+    expect(simple.getValue()!.toUpperCase()).toBe('Via Fitriana');
+    /*GETTER SETTER REVISITED*/
+    class Personal<Name, Age> {
+      constructor(private name: Name, private age: Age) {}
+      
+      set _name(name: Name) {
+        this.name = name;
+      }
+      set _age(age: Age) {
+        this.age = age;
+      }
+      
+      get _name(): Name {
+        return this.name;
+      }
+      get _age(): Age {
+        return this.age;
+      }
+    }
+    const personal = new Personal<string, number>('Via Fitriana', 19);
+    personal._name;
+    personal._name = 'beni';
+    
+  });
+  /*CONSTRAINT*/  
+  interface Employee {
+    id: string;
+    name: string;
+  }
+  interface Manager extends Employee {
+    totalEmployee: number;
+  }
+  interface VP extends Manager {
+    totalManager: number;
+  }
+  class EmployeeData<T extends Employee> {
+    constructor(public employee: T) {}
+  }
+  it('should support constraint', async() => {
+    const data1 = new EmployeeData<Employee>({
+      id: "7282882",
+      name: "Via Fitriana"
+    });
+    const data2 = new EmployeeData<Manager>({
+      id: "28272728",
+      name: "Via Fitriana",
+      totalEmployee: 90
+    });
   })
 });

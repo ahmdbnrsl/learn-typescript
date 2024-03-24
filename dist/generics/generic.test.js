@@ -64,4 +64,63 @@ describe('Generics', function () {
         expect(entitys.fitriana).toBe(19);
         expect(entitys.beni).toBe(true);
     }));
+    /*OPTIONAL GENERIC TYPE*/
+    it('should support optional generic type', () => __awaiter(this, void 0, void 0, function* () {
+        const entity = new Entity('Via Fitriana', 19);
+        expect(entity.name).toBe('Via Fitriana');
+        expect(entity.age).toBe(19);
+    }));
+    /*CREATE SIMPLE GENERIC*/
+    class SimpleGeneric {
+        setValue(value) {
+            this.value = value;
+        }
+        getValue() {
+            return this.value;
+        }
+    }
+    it('should support create simple generic', () => __awaiter(this, void 0, void 0, function* () {
+        const simple = new SimpleGeneric();
+        simple.setValue('Via Fitriana');
+        //simple.setValue(100) Here is error because type of generic was declared as string
+        expect(simple.getValue().toUpperCase()).toBe('Via Fitriana');
+        /*GETTER SETTER REVISITED*/
+        class Personal {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            set _name(name) {
+                this.name = name;
+            }
+            set _age(age) {
+                this.age = age;
+            }
+            get _name() {
+                return this.name;
+            }
+            get _age() {
+                return this.age;
+            }
+        }
+        const personal = new Personal('Via Fitriana', 19);
+        personal._name;
+        personal._name = 'beni';
+    }));
+    class EmployeeData {
+        constructor(employee) {
+            this.employee = employee;
+        }
+    }
+    it('should support constraint', () => __awaiter(this, void 0, void 0, function* () {
+        const data1 = new EmployeeData({
+            id: "7282882",
+            name: "Via Fitriana"
+        });
+        const data2 = new EmployeeData({
+            id: "28272728",
+            name: "Via Fitriana",
+            totalEmployee: 90
+        });
+    }));
 });
