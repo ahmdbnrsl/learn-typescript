@@ -119,5 +119,53 @@ describe('Generics', function () {
       name: "Via Fitriana",
       totalEmployee: 90
     });
-  })
+  });
+  /*ARRAY*/
+  it('should support array', async() => {
+    const arrr = new Array<string>();
+    arrr.push("Via");
+    arrr.push("Beni");
+    
+    expect(arrr[0]).toBe("Via");
+  });
+  /*SET*/
+  it('should support set', async() => {
+    const sset = new Set<string>();
+    sset.add("Beni");
+    sset.add("Via");
+    sset.add("Via");
+    
+    expect(sset.size).toBe(2);
+    expect(sset.has("Beni")).toBe(true);
+  });
+  /*map*/
+  it('should support map', async() => {
+    const map = new Map<string, boolean>();
+    map.set("Via", true);
+    map.set("Beni", false);
+    
+    expect(map.get("Via")).toBe(true);
+  });
+  /*PROMISE*/
+  async function fetchData(value: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      setTimeout(() => {
+        if(value === "Via") {
+          resolve("Hello Sayang");
+        } else {
+          reject("apaan sihlu")
+        }
+      }, 2000);
+    })
+  }
+  it('should support promise', async() => {
+    const result = await fetchData("Via");
+    expect(result.toUpperCase()).toBe("HELLO SAYANG");
+    
+    try {
+      await fetchData("Beni")
+    } catch (error) {
+      expect(error).toBe("apaan sihlu");
+    }
+  });
 });

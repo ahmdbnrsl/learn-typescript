@@ -123,4 +123,52 @@ describe('Generics', function () {
             totalEmployee: 90
         });
     }));
+    /*ARRAY*/
+    it('should support array', () => __awaiter(this, void 0, void 0, function* () {
+        const arrr = new Array();
+        arrr.push("Via");
+        arrr.push("Beni");
+        expect(arrr[0]).toBe("Via");
+    }));
+    /*SET*/
+    it('should support set', () => __awaiter(this, void 0, void 0, function* () {
+        const sset = new Set();
+        sset.add("Beni");
+        sset.add("Via");
+        sset.add("Via");
+        expect(sset.size).toBe(2);
+        expect(sset.has("Beni")).toBe(true);
+    }));
+    /*map*/
+    it('should support map', () => __awaiter(this, void 0, void 0, function* () {
+        const map = new Map();
+        map.set("Via", true);
+        map.set("Beni", false);
+        expect(map.get("Via")).toBe(true);
+    }));
+    /*PROMISE*/
+    function fetchData(value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (value === "Via") {
+                        resolve("Hello Sayang");
+                    }
+                    else {
+                        reject("apaan sihlu");
+                    }
+                }, 2000);
+            });
+        });
+    }
+    it('should support promise', () => __awaiter(this, void 0, void 0, function* () {
+        const result = yield fetchData("Via");
+        expect(result.toUpperCase()).toBe("HELLO SAYANG");
+        try {
+            yield fetchData("Beni");
+        }
+        catch (error) {
+            expect(error).toBe("apaan sihlu");
+        }
+    }));
 });
