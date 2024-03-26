@@ -22,7 +22,8 @@
     "babel-jest": "latest",
     "jest": "latest",
     "ts-jest": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "zod": "latest"
   },
   "license": "ISC"
 }
